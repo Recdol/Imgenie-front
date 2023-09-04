@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getAccessToken, requestWithResolvingAuthProblem } from '../../auth';
 
 const backendUrl = process.env.REACT_APP_BACKEND_HOST;
 const urlToBlob = async (url) => {
@@ -13,11 +14,15 @@ export default async function requestRecommendMusic(imageUrl, genres) {
   formData.append('image', imageBlob);
   formData.append('genres', genres);
 
-  return axios
-    .post(`${backendUrl}/recommendMusic`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-    .then((res) => res.data);
+  return requestWithResolvingAuthProblem(async () => {
+    const accessToken = getAccessToken();
+    return axios
+      .post(`${backendUrl}/recommendMusic`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: accessToken,
+        },
+      })
+      .then((res) => res.data);
+  });
 }
