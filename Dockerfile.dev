@@ -7,7 +7,7 @@ RUN npm install
 # 앱 소스 추가
 COPY . .
 # 포트 설정
-ENV PORT 8000
+ENV PORT 80
 # 포트 노출
 EXPOSE $PORT 
 # 실행
