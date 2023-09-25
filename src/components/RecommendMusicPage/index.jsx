@@ -20,7 +20,7 @@ function RecommendMusicPage() {
 
   const imgUrl = location.state?.url ?? defaultImg;
   const songs = location.state?.songs ?? defaultSongs;
-  const sessionId = location.state?.sessionId ?? defaultId;
+  const inferenceId = location.state?.inferenceId ?? defaultId;
 
   const [modalOpen, setModalOpen] = useState(false);
   const [song, setSong] = useState(songs[0]);
@@ -115,7 +115,7 @@ function RecommendMusicPage() {
                 className="feedbackbtn"
                 onClick={() => {
                   setIsLike(!isLike);
-                  requestUserFeedback(sessionId, song.song_id, !isLike);
+                  requestUserFeedback(inferenceId, song.song_id, !isLike);
                 }}
                 type="button"
               >
