@@ -1,12 +1,25 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
+import { requestCheckUser, requestNewUser } from './auth';
 
 function MainPage() {
   const navigate = useNavigate();
   const naviateToUpload = () => {
     navigate('/genre-select');
   };
+
+  requestCheckUser().catch((error) => {
+    if (error.response?.status === 401) {
+      requestNewUser();
+    } else {
+      navigate('/error', {
+        state: {
+          backTo: '/',
+        },
+      });
+    }
+  });
 
   return (
     <div className="MainPage">
