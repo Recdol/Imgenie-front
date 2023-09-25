@@ -5,7 +5,7 @@ name: Deploy front dev app
 
 on:
   push:
-    branches: ["dev"]
+    branches: ['dev']
 
 jobs:
   build:
@@ -29,24 +29,25 @@ jobs:
           tags: recdolserver/imgenie-front-dev
 
       - name: google auth
-        id: "auth"
-        uses: "google-github-actions/auth@v1"
+        id: 'auth'
+        uses: 'google-github-actions/auth@v1'
         with:
-          credentials_json: "${{ secrets.GCE_SA_KEY }}"
+          credentials_json: '${{ secrets.GCE_SA_KEY }}'
 
       - name: set up Cloud SDK
-        uses: "google-github-actions/setup-gcloud@v1"
+        uses: 'google-github-actions/setup-gcloud@v1'
         with:
           project_id: ${{ secrets.PROJECT_ID }}
 
       - name: use gcloud cli
-        run: "gcloud info"
+        run: 'gcloud info'
 
       - name: gcp deploy
         run: |-
           gcloud compute instances update-container "${{ secrets.FRONT_DEV_GCE_INSTANCE }}" \
             --zone "${{ secrets.FRONT_DEV_GCE_INSTANCE_ZONE }}" \
             --container-image "docker.io/recdolserver/imgenie-front-dev"
+            --container-env REACT_APP_BACKEND_HOST="${{ secrets.FRONT_DEV_ENV__REACT_APP_BACKEND_HOST }}",REACT_APP_BACKEND_REAL_HOST="${{ secrets.FRONT_DEV_ENV__REACT_APP_BACKEND_REAL_HOST }}"
 
       - name: gcp reset
         run: |-
