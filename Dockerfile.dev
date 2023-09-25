@@ -7,8 +7,9 @@ RUN npm install
 # 앱 소스 추가
 COPY . .
 # 포트 설정
+ENV WDS_SOCKET_PORT 0
 ENV PORT 80
 # 포트 노출
-EXPOSE $PORT 
+EXPOSE $PORT
 # 실행
 CMD [ "npm", "run", "start"]
