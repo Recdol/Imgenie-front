@@ -18,9 +18,9 @@ function RecommendMusicPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const imgUrl = location.state?.url ?? defaultImg;
   const songs = location.state?.songs ?? defaultSongs;
   const inferenceId = location.state?.inferenceId ?? defaultId;
+  const imageUrl = location.state?.imageUrl ?? defaultImg;
 
   const [modalOpen, setModalOpen] = useState(false);
   const [song, setSong] = useState(songs[0]);
@@ -59,7 +59,7 @@ function RecommendMusicPage() {
         <div>
           {modalOpen && (
             <Modal
-              imgUrl={imgUrl}
+              imgUrl={imageUrl}
               artistName={song.artist_name}
               musicTitle={song.song_title}
               setOpenModal={setModalOpen}
@@ -72,7 +72,7 @@ function RecommendMusicPage() {
         </div>
         <MusicSelector
           songs={songs}
-          imgUrl={imgUrl}
+          imgUrl={imageUrl}
           onSlideChange={onSlideChange}
         />
         <h2>지금 노래를 들어보세요</h2>

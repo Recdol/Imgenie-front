@@ -137,8 +137,7 @@ function CardGenerator({ imgUrl, artistName, musicTitle }) {
       content: {
         title: '내 일상에 어울리는 노래는,',
         description: `${musicTitle} By. ${artistName}`,
-        imageUrl:
-          'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
+        imageUrl: imgUrl,
         link: {
           mobileWebUrl: myHost,
           webUrl: myHost,
