@@ -3,10 +3,19 @@
   position: fixed;
   width: min(100%, 400px);
   height: 6000px;
-  background-color: rgba(176, 176, 176, 0.3);
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+
+.modalBackground::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(176, 176, 176, 0.3);
   animation: modal-bg-show 0.4s;
 }
 
@@ -21,6 +30,7 @@
   margin: auto;
   margin-top: 20px;
   animation: modal-show 0.4s;
+  position: relative;
 }
 
 .modalContainer .title {
@@ -31,20 +41,17 @@
   font-size: 10px;
   width: 100%;
   height: 85%;
+  margin-bottom: 10px;
 }
 
 .titleCloseBtn {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.titleCloseBtn button {
   background-color: transparent;
   border: none;
-  font-size: 25px;
   cursor: pointer;
-  margin-top: -25px;
-  margin-right: -17px;
+  padding: 0;
+  position: absolute;
+  right: 5px;
+  top: 5px;
 }
 
 .modalContainer .body {
@@ -64,22 +71,11 @@
   margin-top: 12px;
 }
 
-.downloadBnt {
+.shareBtn {
   border: none;
-  padding: 15px 0 15px 0;
-  width: 78%;
-  height: 100%;
-  margin-top: 6.5px;
-  background-color: #f44404;
-  box-shadow: 0px 0px 0px 2px #f44404;
-  border-radius: 15px;
-  font-family: 'Noto Sans KR', sans-serif;
-  text-align: center;
-  align-items: center;
-  font-weight: 900;
-  font-size: 1.1em;
-  color: black;
+  background: none;
 }
+
 .feedback {
   display: grid;
   margin-top: 8%;
@@ -108,6 +104,12 @@
   color: white;
   font-weight: 900;
   margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.shareTitle {
+  color: white;
+  font-weight: 900;
   font-size: 1.2em;
 }
 
