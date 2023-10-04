@@ -2,13 +2,22 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { isIOS } from 'react-device-detect';
 import defaultImg from '../../../imgs/dummy512.jpg';
+import kakaoShareSvg from './svgs/kakaoShare.svg';
+import downloadSvg from './svgs/download.svg';
 import { drawBackgroundMusicCard, drawQueryImage } from './draw';
+
+const { Kakao } = window;
+const myHost = `${window.location.protocol}//${window.location.host}`;
 
 function CardGenerator({ imgUrl, artistName, musicTitle }) {
   const canvasRef = useRef();
   const imgRef = useRef();
 
   useEffect(() => {
+    // kakao
+    Kakao.cleanup();
+    Kakao.init(process.env.REACT_APP_KAKAO_DEV_JS_API_KEY);
+
     const canvas = canvasRef.current;
     // origin: 525
     canvas.width = 525;
@@ -122,9 +131,33 @@ function CardGenerator({ imgUrl, artistName, musicTitle }) {
     }
   }, [canvasRef]);
 
+  const shareKakao = () => {
+    Kakao.Share.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: '내 일상에 어울리는 노래는,',
+        description: `${musicTitle} By. ${artistName}`,
+        imageUrl: imgUrl,
+        link: {
+          mobileWebUrl: myHost,
+          webUrl: myHost,
+        },
+      },
+      buttons: [
+        {
+          title: '나도 해보기',
+          link: {
+            mobileWebUrl: myHost,
+            webUrl: myHost,
+          },
+        },
+      ],
+    });
+  };
+
   if (isIOS) {
     return (
-      <>
+      <div className="cardGen">
         <div className="cardHeader">
           <span>이미지를 길게 눌러 저장하기</span>
         </div>
@@ -132,22 +165,36 @@ function CardGenerator({ imgUrl, artistName, musicTitle }) {
           <canvas ref={canvasRef} style={{ width: '0%' }} />
           <img ref={imgRef} style={{ width: '100%' }} alt="card" />
         </div>
-      </>
+        <div className="shareTitle">
+          <span>주변에 공유하기</span>
+        </div>
+        <div className="bottom">
+          <button className="shareBtn" type="button" onClick={shareKakao}>
+            <img src={kakaoShareSvg} alt="kakao share button" />
+          </button>
+        </div>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className="cardGen">
       <div className="title">
         <canvas ref={canvasRef} style={{ width: '0%' }} />
         <img ref={imgRef} style={{ width: '100%' }} alt="card" />
       </div>
+      <div className="shareTitle">
+        <span>주변에 공유하기</span>
+      </div>
       <div className="bottom">
-        <button className="downloadBnt" type="button" onClick={handleDownload}>
-          <span>포토카드 다운로드</span>
+        <button className="shareBtn" type="button" onClick={handleDownload}>
+          <img src={downloadSvg} alt="download button" />
+        </button>
+        <button className="shareBtn" type="button" onClick={shareKakao}>
+          <img src={kakaoShareSvg} alt="kakao share button" />
         </button>
       </div>
-    </>
+    </div>
   );
 }
 

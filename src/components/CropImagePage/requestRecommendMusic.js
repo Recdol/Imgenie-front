@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const backendUrl = process.env.REACT_APP_BACKEND_HOST;
+const myHost = `${window.location.protocol}//${window.location.host}`;
+const backendUrl = `${myHost}${process.env.REACT_APP_BACKEND_HOST}`;
 const urlToBlob = async (url) => {
   const res = await fetch(url);
   return res.blob();
@@ -19,5 +20,10 @@ export default async function requestRecommendMusic(imageUrl, genres) {
         'Content-Type': 'multipart/form-data',
       },
     })
-    .then((res) => res.data);
+    .then((res) => res.data)
+    .then(({ inference_id: inferenceId, songs, image_url: savedImageUrl }) => ({
+      inferenceId,
+      songs,
+      imageUrl: `${backendUrl}/${savedImageUrl}`,
+    }));
 }

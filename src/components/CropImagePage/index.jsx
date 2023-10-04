@@ -28,12 +28,12 @@ function CropImagePage() {
     navigate('/loading');
 
     requestRecommendMusic(croppedImage, info.genres)
-      .then(({ inference_id: inferenceId, songs }) => {
+      .then(({ inferenceId, songs, imageUrl }) => {
         navigate('/music-rec', {
           state: {
-            url: croppedImage,
             songs,
             inferenceId,
+            imageUrl,
           },
         });
       })
