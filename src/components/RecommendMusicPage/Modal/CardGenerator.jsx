@@ -29,26 +29,11 @@ function CardGenerator({ imgUrl, artistName, musicTitle }) {
     const musicTitleThreshold = canvas.width - canvas.width * 0.25;
     const artistNameThreshold = canvas.width + canvas.width * 0.15;
 
-    // get date
-    // const today = new Date();
-    // const year = today.getFullYear();
-    // const month = String(today.getMonth() + 1).padStart(2, '0');
-    // const day = String(today.getDate()).padStart(2, '0');
-    // const dateString = `${year}.${month}.${day}`;
-
     const ctx = canvas.getContext('2d');
     // font color
     ctx.fillStyle = 'black';
 
     drawBackgroundMusicCard(canvas, ctx, (backgroundImgTag) => {
-      // // date
-      // ctx.font = `${image.width - image.width * 0.962}px Arial`;
-      // ctx.fillText(
-      //   `PHOTO ${dateString}`,
-      //   image.width - image.width * 0.4114,
-      //   image.height - image.height * 0.946
-      // );
-
       // title
       ctx.font = `${
         backgroundImgTag.width - backgroundImgTag.width * 0.918
