@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
+import songPropType from '../../../songs/songPropType';
 
 function MusicSelector({ onSlideChange, songs, imgUrl }) {
   const swiperElRef = useRef();
@@ -41,15 +42,7 @@ function MusicSelector({ onSlideChange, songs, imgUrl }) {
 }
 
 MusicSelector.propTypes = {
-  songs: PropTypes.arrayOf(
-    PropTypes.shape({
-      song_id: PropTypes.int,
-      song_title: PropTypes.string,
-      artist_name: PropTypes.string,
-      album_title: PropTypes.string,
-      music_url: PropTypes.string,
-    })
-  ).isRequired,
+  songs: PropTypes.arrayOf(songPropType).isRequired,
   onSlideChange: PropTypes.func.isRequired,
   imgUrl: PropTypes.string.isRequired,
 };

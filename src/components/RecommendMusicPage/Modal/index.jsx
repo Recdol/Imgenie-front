@@ -3,8 +3,9 @@ import './style.css';
 import PropTypes from 'prop-types';
 import CardGen from './CardGenerator';
 import exitSvg from './svgs/exit.svg';
+import songPropType from '../../../songs/songPropType';
 
-function Modal({ setOpenModal, imgUrl, artistName, musicTitle }) {
+function Modal({ setOpenModal, imgUrl, song }) {
   return (
     <div className="modalBackground">
       <div className="modalContainer">
@@ -17,11 +18,7 @@ function Modal({ setOpenModal, imgUrl, artistName, musicTitle }) {
         >
           <img src={exitSvg} alt="exit icon" />
         </button>
-        <CardGen
-          imgUrl={imgUrl}
-          musicTitle={musicTitle}
-          artistName={artistName}
-        />
+        <CardGen imgUrl={imgUrl} song={song} />
       </div>
     </div>
   );
@@ -30,8 +27,7 @@ function Modal({ setOpenModal, imgUrl, artistName, musicTitle }) {
 Modal.propTypes = {
   setOpenModal: PropTypes.bool.isRequired,
   imgUrl: PropTypes.string.isRequired,
-  artistName: PropTypes.string.isRequired,
-  musicTitle: PropTypes.string.isRequired,
+  song: songPropType.isRequired,
 };
 
 export default Modal;
