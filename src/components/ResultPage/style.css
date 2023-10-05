@@ -1,0 +1,72 @@
+.ResultPage .header h1 {
+  color: white;
+  margin: 0;
+  font-size: 1.8em;
+}
+
+.ResultPage .header h3 {
+  color: white;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.ResultPage .card {
+  padding: 15px 65px 0px 65px;
+}
+
+.ResultPage .card img {
+  width: 100%;
+}
+
+.ResultPage .footer button.retry {
+  width: 90%;
+  box-shadow: 0px 0px 0px 2px #f44404;
+  background: #f44404;
+}
+
+.ResultPage .footer button.retry:hover {
+  color: #f44404;
+  background-color: black;
+}
+
+.audio {
+  border-radius: 15px;
+  background: none;
+}
+.audio .rhap_repeat-button {
+  color: #e3e3e3;
+  margin-right: 6px;
+}
+
+.audio .rhap_main-controls-button {
+  color: #e3e3e3;
+}
+
+.audio .rhap_volume-button {
+  color: #e3e3e3;
+}
+
+.audio .rhap_time {
+  color: #e3e3e3;
+}
+
+.audio .rhap_progress-indicator {
+  background: #f44404;
+}
+
+.audio .rhap_progress-filled {
+  background-color: #f44404;
+  opacity: 0.8;
+}
+
+.audio .rhap_additional-controls {
+  flex: 1 1;
+}
+
+.audio .rhap_main-controls {
+  flex: 1;
+}
+
+.audio .rhap_volume-controls {
+  flex: 1;
+}

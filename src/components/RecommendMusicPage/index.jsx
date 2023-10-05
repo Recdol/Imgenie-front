@@ -10,7 +10,7 @@ import './style.css';
 import Modal from './Modal';
 import defaultImg from '../../imgs/dummy512.jpg';
 import requestUserFeedback from './requestUserFeedback';
-import defaultSongs from './defaultSongs';
+import defaultSongs from '../../songs/defaultSongs';
 
 const defaultId = 'NULL';
 
@@ -58,12 +58,7 @@ function RecommendMusicPage() {
       <div className="contents">
         <div>
           {modalOpen && (
-            <Modal
-              imgUrl={imageUrl}
-              artistName={song.artist_name}
-              musicTitle={song.song_title}
-              setOpenModal={setModalOpen}
-            />
+            <Modal imgUrl={imageUrl} song={song} setOpenModal={setModalOpen} />
           )}
         </div>
         <div className="header">
