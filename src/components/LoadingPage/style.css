@@ -1,4 +1,4 @@
-.Loading-div {
+.LoadingPage {
   background-color: black;
   min-height: 100vh;
   display: flex;
@@ -10,24 +10,24 @@
   color: white;
 }
 
-.top-text {
+.LoadingPage .title {
   margin-bottom: 5px;
 }
 
-.bott-text {
+.LoadingPage .decription {
   margin-top: 5px;
   margin-bottom: 5px;
   font-size: 14px;
 }
 
-.Spinner {
+.LoadingPage .Spinner {
   margin-top: 5px;
   height: 65px;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .Spinner {
+  .LoadingPage .Spinner {
     animation: Spinner-spin infinite 1s linear;
   }
 }
